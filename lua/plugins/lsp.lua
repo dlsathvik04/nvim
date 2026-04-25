@@ -25,7 +25,7 @@ return {
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
+				map("<leader>cr", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 				map("gd", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
@@ -79,6 +79,7 @@ return {
 			stylua = {},
 			basedpyright = require("plugins.lsp.basedpyright"),
 			ruff = {},
+			zls = require("plugins.lsp.zls"),
 		}
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {

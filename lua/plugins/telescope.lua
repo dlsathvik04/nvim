@@ -80,13 +80,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader><leader>", function()
 			local git_dir = vim.fn.finddir(".git", ".;")
 			if git_dir ~= "" then
-				builtin.git_files()
+				require("telescope.builtin").git_files({
+					show_untracked = true,
+				})
 			else
-				builtin.find_files()
+				require("telescope.builtin").find_files()
 			end
 		end, { desc = "Search files (git-aware)" })
 
-		-- vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[S]earch [F]iles' })
 		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 		vim.keymap.set({ "n", "v" }, "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })

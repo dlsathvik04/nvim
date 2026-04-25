@@ -1,7 +1,11 @@
 local palette = {
-	base = "#1e1e2e",
-	mantle = "#181825",
-	crust = "#11111b",
+	-- base = "#1e1e2e",
+	-- mantle = "#181825",
+	-- crust = "#11111b",
+	--
+	base = "#181826",
+	mantle = "#13131f",
+	crust = "#0d0d14",
 
 	text = "#cdd6f4",
 	subtext1 = "#bac2de",

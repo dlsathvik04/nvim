@@ -82,3 +82,10 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 vim.g.netrw_liststyle = 3
+
+-- Enable folding
+vim.opt.foldenable = true
+-- Set the folding method to syntax
+vim.opt.foldmethod = "syntax"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
