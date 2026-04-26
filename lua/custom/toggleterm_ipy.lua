@@ -33,7 +33,7 @@ function M.setup(user_opts)
 				vim.defer_fn(function()
 					term:send("%autoindent\n")
 				end, 100)
-				
+
 				-- Keep editor focus after opening the REPL window.
 				vim.schedule(function()
 					local prev = vim.g.__python_repl_prev_win
@@ -103,12 +103,12 @@ function M.setup(user_opts)
 				min_indent = math.min(min_indent, indent)
 			end
 		end
-		
+
 		-- If all lines are empty, return as-is
 		if min_indent == math.huge then
 			return lines
 		end
-		
+
 		-- Remove the common indentation
 		local dedented = {}
 		for _, line in ipairs(lines) do
@@ -118,7 +118,7 @@ function M.setup(user_opts)
 				table.insert(dedented, "")
 			end
 		end
-		
+
 		return dedented
 	end
 
@@ -179,17 +179,21 @@ function M.setup(user_opts)
 
 		return start_line, end_line
 	end
-
 	local function send_cell()
 		local start_line, end_line = find_cell_bounds()
 		local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
-		if #lines == 0 then
+		-- Filter out lines that are empty or contain only whitespace
+		local filtered_lines = vim.tbl_filter(function(line)
+			return line:match("%S") ~= nil
+		end, lines)
+
+		if #filtered_lines == 0 then
 			return
 		end
-		local dedented_lines = dedent(lines)
+		-- Process the filtered lines
+		local dedented_lines = dedent(filtered_lines)
 		send_text(table.concat(dedented_lines, "\n") .. "\n")
 	end
-
 	local function new_cell()
 		local row = vim.api.nvim_win_get_cursor(0)[1]
 		vim.api.nvim_buf_set_lines(0, row, row, false, {
@@ -232,7 +236,7 @@ function M.setup(user_opts)
 		repl = nil
 		create_repl()
 		open_repl_keep_focus()
-		
+
 		-- Wait a bit for the REPL to start, then send the whole file
 		vim.defer_fn(function()
 			local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
