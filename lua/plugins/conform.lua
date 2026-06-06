@@ -15,6 +15,8 @@ return {
       json = { "prettier" },
       python = { "black" },
       go = { "gofmt" },
+      c = { "clang_format" },
+      cpp = { "clang_format" },
     },
   },
 }

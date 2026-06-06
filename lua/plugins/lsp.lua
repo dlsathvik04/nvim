@@ -27,7 +27,9 @@ return {
 
 				map("<leader>cr", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-				map("gd", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+				map("<leader>cd", vim.diagnostic.open_float, "Line [D]iagnostics")
+				map("gl", vim.diagnostic.open_float, "Line Diagnostics (alternative)")
+				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -63,6 +65,7 @@ return {
 				--
 				-- This may be unwanted, since they displace some of your code
 				if client and client:supports_method("textDocument/inlayHint", event.buf) then
+					vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
@@ -80,6 +83,9 @@ return {
 			basedpyright = require("plugins.lsp.basedpyright"),
 			ruff = {},
 			zls = require("plugins.lsp.zls"),
+			rust_analyzer = require("plugins.lsp.rust_analyzer"),
+			wgsl_analyzer = require("plugins.lsp.wgsl_analyzer"),
+			clangd = require("plugins.lsp.clangd"),
 		}
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {

@@ -46,10 +46,5 @@ return {
 			desc = "Copilot Status",
 			silent = true,
 		})
-
-		vim.keymap.set("n", "<leader>ca", "<cmd>Copilot auth<cr>", {
-			desc = "Copilot Auth",
-			silent = true,
-		})
 	end,
 }

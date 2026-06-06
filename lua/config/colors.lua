@@ -198,6 +198,20 @@ hi("Added", { fg = palette.green })
 hi("Changed", { fg = palette.yellow })
 hi("Removed", { fg = palette.red })
 
+-- GitSigns
+hi("GitSignsAdd", { fg = palette.green })
+hi("GitSignsChange", { fg = palette.yellow })
+hi("GitSignsDelete", { fg = palette.red })
+hi("GitSignsTopdelete", { fg = palette.red })
+hi("GitSignsChangedelete", { fg = palette.yellow })
+hi("GitSignsUntracked", { fg = palette.overlay1 })
+hi("GitSignsStagedAdd", { fg = palette.teal })
+hi("GitSignsStagedChange", { fg = palette.sapphire })
+hi("GitSignsStagedDelete", { fg = palette.maroon })
+hi("GitSignsStagedTopdelete", { fg = palette.maroon })
+hi("GitSignsStagedChangedelete", { fg = palette.sapphire })
+hi("GitSignsCurrentLineBlame", { fg = palette.overlay0, italic = true })
+
 -- Spell
 hi("SpellBad", { undercurl = true, sp = palette.red })
 hi("SpellCap", { undercurl = true, sp = palette.blue })

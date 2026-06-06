@@ -89,3 +89,12 @@ vim.opt.foldenable = true
 vim.opt.foldmethod = "syntax"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+
+vim.opt.termguicolors = true
+
+-- WGSL filetype detection
+vim.filetype.add({
+	extension = {
+		wgsl = "wgsl",
+	},
+})
