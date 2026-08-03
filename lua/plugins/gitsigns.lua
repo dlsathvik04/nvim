@@ -5,7 +5,7 @@ return {
 		signs = {
 			add = { text = "▎" },
 			change = { text = "▎" },
-			delete = { text = "" },
+			delete = { text = "> " },
 			topdelete = { text = "" },
 			changedelete = { text = "▎" },
 			untracked = { text = "▎" },
@@ -13,7 +13,7 @@ return {
 		signs_staged = {
 			add = { text = "▎" },
 			change = { text = "▎" },
-			delete = { text = "" },
+			delete = { text = "> " },
 			topdelete = { text = "" },
 			changedelete = { text = "▎" },
 		},
@@ -31,19 +31,11 @@ return {
 
 		-- Navigation
 		vim.keymap.set("n", "]g", function()
-			if vim.wo.diff then
-				vim.cmd.normal({ "]c", bang = true })
-			else
-				gs.nav_hunk("next")
-			end
+			gs.nav_hunk("next")
 		end, { desc = "Next git hunk" })
 
 		vim.keymap.set("n", "[g", function()
-			if vim.wo.diff then
-				vim.cmd.normal({ "[c", bang = true })
-			else
-				gs.nav_hunk("prev")
-			end
+			gs.nav_hunk("prev")
 		end, { desc = "Prev git hunk" })
 
 		-- Staging
@@ -51,10 +43,9 @@ return {
 		vim.keymap.set({ "n", "v" }, "<leader>gr", gs.reset_hunk, { desc = "Reset hunk" })
 		vim.keymap.set("n", "<leader>gS", gs.stage_buffer, { desc = "Stage buffer" })
 		vim.keymap.set("n", "<leader>gR", gs.reset_buffer, { desc = "Reset buffer" })
-		vim.keymap.set("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
 
 		-- Preview / info
-		vim.keymap.set("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
+		vim.keymap.set("n", "<leader>gp", gs.preview_hunk_inline, { desc = "Preview hunk" })
 		vim.keymap.set("n", "<leader>gb", gs.blame_line, { desc = "Blame line" })
 		vim.keymap.set("n", "<leader>gB", function()
 			gs.blame_line({ full = true })
@@ -66,7 +57,6 @@ return {
 
 		-- Toggle
 		vim.keymap.set("n", "<leader>gtb", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
-		vim.keymap.set("n", "<leader>gtd", gs.toggle_deleted, { desc = "Toggle deleted" })
 
 		-- Text object: select hunk with ih/ah
 		vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
