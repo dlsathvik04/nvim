@@ -1,65 +1,29 @@
-local palette = {
-	-- base = "#1e1e2e",
-	-- mantle = "#181825",
-	-- crust = "#11111b",
-	--
-	base = "#181826",
-	mantle = "#13131f",
-	crust = "#0d0d14",
-
-	text = "#cdd6f4",
-	subtext1 = "#bac2de",
-	subtext0 = "#a6adc8",
-
-	surface2 = "#585b70",
-	surface1 = "#45475a",
-	surface0 = "#313244",
-
-	overlay2 = "#9399b2",
-	overlay1 = "#7f849c",
-	overlay0 = "#6c7086",
-
-	blue = "#89b4fa",
-	lavender = "#b4befe",
-	sapphire = "#74c7ec",
-	sky = "#89dceb",
-	teal = "#94e2d5",
-	green = "#a6e3a1",
-	yellow = "#f9e2af",
-	peach = "#fab387",
-	maroon = "#eba0ac",
-	red = "#f38ba8",
-	mauve = "#cba6f7",
-	pink = "#f5c2e7",
-	flamingo = "#f2cdcd",
-	rosewater = "#f5e0dc",
-}
-
 -- local palette = {
--- 	base = "#1e1e1e",
--- 	mantle = "#181818",
--- 	crust = "#111111",
+-- 	-- base = "#1e1e2e",
+-- 	-- mantle = "#181825",
+-- 	-- crust = "#11111b",
+-- 	--
+-- 	base = "#181826",
+-- 	mantle = "#13131f",
+-- 	crust = "#0d0d14",
 --
--- 	text = "#d4d4d4",
--- 	subtext1 = "#bfbfbf",
--- 	subtext0 = "#a8a8a8",
+-- 	text = "#cdd6f4",
+-- 	subtext1 = "#bac2de",
+-- 	subtext0 = "#a6adc8",
 --
--- 	surface2 = "#5c5c5c",
--- 	surface1 = "#474747",
--- 	surface0 = "#323232",
+-- 	surface2 = "#585b70",
+-- 	surface1 = "#45475a",
+-- 	surface0 = "#313244",
 --
--- 	overlay2 = "#9a9a9a",
--- 	overlay1 = "#828282",
--- 	overlay0 = "#6e6e6e",
+-- 	overlay2 = "#9399b2",
+-- 	overlay1 = "#7f849c",
+-- 	overlay0 = "#6c7086",
 --
--- 	-- primary accents converted to greys
--- 	blue = "#a6a6a6",
--- 	lavender = "#b0b0b0",
--- 	sapphire = "#9c9c9c",
--- 	sky = "#b8b8b8",
--- 	teal = "#a0a0a0",
---
--- 	-- keep semantic colors (optional)
+-- 	blue = "#89b4fa",
+-- 	lavender = "#b4befe",
+-- 	sapphire = "#74c7ec",
+-- 	sky = "#89dceb",
+-- 	teal = "#94e2d5",
 -- 	green = "#a6e3a1",
 -- 	yellow = "#f9e2af",
 -- 	peach = "#fab387",
@@ -70,6 +34,42 @@ local palette = {
 -- 	flamingo = "#f2cdcd",
 -- 	rosewater = "#f5e0dc",
 -- }
+
+local palette = {
+	base = "#1e1e1e",
+	mantle = "#181818",
+	crust = "#111111",
+
+	text = "#d4d4d4",
+	subtext1 = "#bfbfbf",
+	subtext0 = "#a8a8a8",
+
+	surface2 = "#5c5c5c",
+	surface1 = "#474747",
+	surface0 = "#323232",
+
+	overlay2 = "#9a9a9a",
+	overlay1 = "#828282",
+	overlay0 = "#6e6e6e",
+
+	-- primary accents converted to greys
+	blue = "#a6a6a6",
+	lavender = "#b0b0b0",
+	sapphire = "#9c9c9c",
+	sky = "#b8b8b8",
+	teal = "#a0a0a0",
+
+	-- keep semantic colors (optional)
+	green = "#a6e3a1",
+	yellow = "#f9e2af",
+	peach = "#fab387",
+	maroon = "#eba0ac",
+	red = "#f38ba8",
+	mauve = "#cba6f7",
+	pink = "#f5c2e7",
+	flamingo = "#f2cdcd",
+	rosewater = "#f5e0dc",
+}
 --
 local function hi(group, opts)
 	vim.api.nvim_set_hl(0, group, opts)

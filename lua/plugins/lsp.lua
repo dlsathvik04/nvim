@@ -81,11 +81,12 @@ return {
 			lua_ls = require("plugins.lsp.lua_ls"),
 			stylua = {},
 			basedpyright = require("plugins.lsp.basedpyright"),
-			ruff = {},
+			ruff = require("plugins.lsp.ruff"),
 			zls = require("plugins.lsp.zls"),
 			rust_analyzer = require("plugins.lsp.rust_analyzer"),
 			wgsl_analyzer = require("plugins.lsp.wgsl_analyzer"),
 			clangd = require("plugins.lsp.clangd"),
+			bashls = require("plugins.lsp.bashls"),
 		}
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {

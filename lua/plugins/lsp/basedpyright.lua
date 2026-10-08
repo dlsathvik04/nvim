@@ -1,23 +1,20 @@
+local conda_prefix = vim.env.CONDA_PREFIX
+
 return {
+	capabilities = require("blink.cmp").get_lsp_capabilities(),
 	settings = {
 		basedpyright = {
-			analysis = {
-				useLibraryCodeForTypes = true,
-				typeCheckingMode = "off",
-				diagnosticMode = "workspace",
-				autoSearchPath = true,
-				inlayHints = {
-					callArgumentNames = true,
-				},
-				extraPaths = {
-					"...",
-					"...",
-				},
+			python = conda_prefix and (conda_prefix .. "/bin/python") or vim.fn.exepath("python"),
+		},
+		analysis = {
+			autoSearchPath = true,
+			useLibraryCodeForTypes = true,
+			typeCheckingMode = "off",
+			diagnosticMode = "workspace",
+			diagnosticSeverityOverrides = {
+				reportMissingImports = "warning",
+				reportMissingModuleSource = "warning",
 			},
-			-- python = {
-			-- 	venvPath = "/path/to/venv",
-			-- 	venv = "venv",
-			-- },
 		},
 	},
 }

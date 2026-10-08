@@ -98,3 +98,5 @@ vim.filetype.add({
 		wgsl = "wgsl",
 	},
 })
+
+vim.o.cmdheight = 0
