@@ -78,15 +78,48 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 
 		vim.keymap.set("n", "<leader><leader>", function()
-			local git_dir = vim.fn.finddir(".git", ".;")
-			if git_dir ~= "" then
-				require("telescope.builtin").git_files({
-					show_untracked = true,
-				})
-			else
-				require("telescope.builtin").find_files()
+			-- 1. Tracked/untracked Git paths to hide
+			local exclude_paths = {
+				"include",
+				-- Or exclude only vendor headers while keeping microbit_v2.h:
+				-- "include/nordic",
+				-- "include/cmsis",
+			}
+
+			-- 2. Files to always include if they exist (even if gitignored)
+			local extra_files = {
+				".env",
+				".clangd",
+				".ignore",
+			}
+
+			local git_cmd = { "git", "ls-files", "--exclude-standard", "--cached", "--others", "--", "." }
+			for _, path in ipairs(exclude_paths) do
+				table.insert(git_cmd, ":!" .. path)
 			end
-		end, { desc = "Search files (git-aware)" })
+
+			local escaped_git = {}
+			for _, arg in ipairs(git_cmd) do
+				table.insert(escaped_git, vim.fn.shellescape(arg))
+			end
+
+			local fs_stat = (vim.uv or vim.loop).fs_stat
+			local extra_prints = {}
+			for _, file in ipairs(extra_files) do
+				if fs_stat(file) then
+					table.insert(extra_prints, "printf '%s\\n' " .. vim.fn.shellescape(file))
+				end
+			end
+
+			local cmd = table.concat(escaped_git, " ")
+			if #extra_prints > 0 then
+				cmd = "{ " .. cmd .. "; " .. table.concat(extra_prints, "; ") .. "; } | awk '!seen[$0]++'"
+			end
+
+			require("telescope.builtin").git_files({
+				git_command = { "sh", "-c", cmd },
+			})
+		end, { desc = "Find Git Files (with custom include/exclude)" })
 
 		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 		vim.keymap.set({ "n", "v" }, "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })

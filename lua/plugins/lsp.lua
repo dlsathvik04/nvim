@@ -87,6 +87,7 @@ return {
 			wgsl_analyzer = require("plugins.lsp.wgsl_analyzer"),
 			clangd = require("plugins.lsp.clangd"),
 			bashls = require("plugins.lsp.bashls"),
+			vtsls = require("plugins.lsp.vtsls"),
 		}
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {

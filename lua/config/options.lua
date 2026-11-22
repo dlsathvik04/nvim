@@ -96,6 +96,8 @@ vim.opt.termguicolors = true
 vim.filetype.add({
 	extension = {
 		wgsl = "wgsl",
+		cql = "cypher",
+		cypher = "cypher",
 	},
 })
 
